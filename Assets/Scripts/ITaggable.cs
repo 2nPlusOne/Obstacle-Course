@@ -1,0 +1,4 @@
+﻿interface ITaggable
+{
+    void Tag();
+}
