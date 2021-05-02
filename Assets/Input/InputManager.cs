@@ -9,13 +9,6 @@ public class InputManager : MonoBehaviour
     public delegate void PlayerMovementCanceled();
     public static event PlayerMovementCanceled OnPlayerMovementCanceled;
 
-    //// Run delegates and events
-    //public delegate void PlayerRunPerformed();
-    //public static event PlayerRunPerformed OnPlayerRunPerformed;
-
-    //public delegate void PlayerRunCanceled();
-    //public static event PlayerRunCanceled OnPlayerRunCanceled;
-
     private PlayerInput inputMaster;
 
     private void Awake()

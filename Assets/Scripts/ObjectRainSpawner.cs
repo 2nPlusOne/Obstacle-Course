@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public class ObjectDropper : MonoBehaviour
+public class ObjectRainSpawner : MonoBehaviour
 {
     [SerializeField]
     MeshRenderer floorRenderer;

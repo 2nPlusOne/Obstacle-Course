@@ -8,19 +8,22 @@ public class SpinObject : MonoBehaviour
 
     [SerializeField]
     float rotationSpeed;
-    
+
+    [SerializeField]
+    SpinDirection spinDirection;
+
     Vector3 spinVector;
 
-    // Start is called before the first frame update
+    enum SpinDirection { Clockwise = 1, CounterClockwise = -1 }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        spinVector = new Vector3(0, rotationSpeed * 2, 0);
+        spinVector = new Vector3(0, rotationSpeed * (int)spinDirection * 2, 0);
         rb.AddTorque(spinVector);
         rb.maxAngularVelocity = rotationSpeed;
     }

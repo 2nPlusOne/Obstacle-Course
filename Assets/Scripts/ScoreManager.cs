@@ -1,24 +1,24 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class ScoreKeeper : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
     [ShowInInspector, ReadOnly]
-    int pinScore = 0;
+    public int PinScore { get; private set; } = 0;
 
     [ShowInInspector, ReadOnly]
-    int wallScore = 0;
+    int WallScore = 0;
 
     void IncrementPinScore()
     {
-        pinScore++;
-        Debug.Log("Pins hit: " + pinScore);
+        PinScore++;
+        Debug.Log("Pins hit: " + PinScore);
     }
 
     void IncrementWallScore()
     {
-        wallScore++;
-        Debug.Log("Walls hit: " + wallScore);
+        WallScore++;
+        Debug.Log("Walls hit: " + WallScore);
     }
 
     void OnEnable()
