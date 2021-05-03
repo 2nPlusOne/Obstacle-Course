@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinObject : MonoBehaviour
+public class Spinner : MonoBehaviour
 {
     Rigidbody rb;
 

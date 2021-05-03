@@ -41,13 +41,13 @@ public class PlayerMovement : MonoBehaviour, ILockableInput
         rb.maxAngularVelocity = maxSpeed / radius;
         minAngularVelocityInputLock = minSpeedInputLock / radius;
 
-        HandleGrounded();
+        isGrounded = IsGrounded();
         Move();
     }
 
     private void Move()
     {
-        if (inputDir != Vector2.zero && isGrounded)
+        if (inputDir.magnitude >= 0.2f && isGrounded)
         {
             if (inputLocked && speed <= minSpeedInputLock)
             {
@@ -62,13 +62,13 @@ public class PlayerMovement : MonoBehaviour, ILockableInput
         }
     }
 
-    private void HandleGrounded()
+    bool IsGrounded()
     {
-        // Check if grounded
         groundedRay = new Ray(transform.position, -Vector3.up);
-        isGrounded = false;
         if (Physics.Raycast(groundedRay, radius + groundedCheckDist))
-            isGrounded = true;
+            return true;
+
+        else return false;
         //Debug.DrawRay(groundedRay.origin, groundedRay.direction, Color.red);
     }
 

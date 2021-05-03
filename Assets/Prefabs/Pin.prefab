@@ -15,8 +15,7 @@ GameObject:
   - component: {fileID: 2133702393430931002}
   - component: {fileID: 39305202683968409}
   - component: {fileID: 7545170199786625809}
-  - component: {fileID: 534704229215531854}
-  - component: {fileID: 4211449121852055184}
+  - component: {fileID: 7743132678739634135}
   m_Layer: 0
   m_Name: Pin
   m_TagString: Untagged
@@ -34,7 +33,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 14.5}
   m_LocalScale: {x: 700, y: 700, z: 700}
-  m_Children: []
+  m_Children:
+  - {fileID: 1085680855748289524}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -144,7 +144,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.0005290686
   m_Center: {x: 0, y: 0.0000000018732889, z: 0.0006670794}
---- !u!114 &534704229215531854
+--- !u!114 &7743132678739634135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,15 +156,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56bb71308dea45646bdcc2612f28ebe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4211449121852055184
-MonoBehaviour:
+  destroyWaitTime: 1
+  poofParticlePrefab: {fileID: 7568438089473434412, guid: f76f7afa1e376734c8eb201e0f059432, type: 3}
+  particleSpawnTransform: {fileID: 1085680855748289524}
+--- !u!1 &3666738057955516916
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259451935116169104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40bb09dadfdc2764f9d99ff8f79bb021, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085680855748289524}
+  m_Layer: 0
+  m_Name: ParticleSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1085680855748289524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666738057955516916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1253756424544271475}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
