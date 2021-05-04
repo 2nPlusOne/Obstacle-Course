@@ -21,9 +21,9 @@ public class Pusher : MonoBehaviour
         startX = transform.position.x;
 
         tweenSequence = DOTween.Sequence();
-        wait = transform.DOMoveX(startX, NextFloat(0,1));
-        push = transform.DOMoveX(startX + 5, 1);
-        pull = transform.DOMoveX(startX, 2);
+        wait = transform.DOMoveX(startX, NextFloat(0, 0.5f));
+        push = transform.DOMoveX(startX + 5, 1.5f);
+        pull = transform.DOMoveX(startX, 1.5f);
     }
 
     void Update()

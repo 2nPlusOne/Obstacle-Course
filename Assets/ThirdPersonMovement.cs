@@ -1,10 +1,13 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
 
-public class PlayerMovement : MonoBehaviour, ILockableInput
+public class ThirdPersonMovement : MonoBehaviour, ILockableInput
 {
     Rigidbody rb;
     SphereCollider sphereCollider;
+    Camera cam;
+    Transform camT;
 
     [SerializeField] float torque = 120;
     [SerializeField] float maxSpeed = 20;
@@ -12,6 +15,7 @@ public class PlayerMovement : MonoBehaviour, ILockableInput
     [SerializeField] float groundedCheckDist = 0.1f;
 
     [SerializeField, ReadOnly] Vector2 inputDir;
+    [SerializeField, ReadOnly] Vector3 targetDir;
     [SerializeField, ReadOnly] float speed;
     [SerializeField, ReadOnly] float radius;
     [SerializeField, ReadOnly] bool isGrounded;
@@ -26,37 +30,48 @@ public class PlayerMovement : MonoBehaviour, ILockableInput
     {
         rb = GetComponent<Rigidbody>();
         sphereCollider = GetComponent<SphereCollider>();
+        cam = Camera.main;
     }
 
     void FixedUpdate()
     {
-        float deltaX = inputDir.x * torque;
-        float deltaY = inputDir.y * torque;
-        //moveVector = new Vector3(deltaX, rb.velocity.y, deltaY);
-        torqueVector = new Vector3(deltaY, rb.velocity.y, -deltaX);
-
         radius = sphereCollider.bounds.extents.x;
         speed = rb.velocity.magnitude;
-
         rb.maxAngularVelocity = maxSpeed / radius;
         minAngularVelocityInputLock = maxInputLockSpeed / radius;
 
+        targetDir = GetTargetDirection();
+        float deltaX = targetDir.x * torque;
+        float deltaY = targetDir.z * torque;
+        //moveVector = new Vector3(deltaX, rb.velocity.y, deltaY);
+        torqueVector = new Vector3(deltaY, rb.velocity.y, -deltaX);
+
         isGrounded = IsGrounded();
-        Move();
+        Move(torqueVector);
     }
 
-    private void Move()
+    Vector3 GetTargetDirection()
+    {
+        camT = cam.transform;
+        Vector3 _forward = camT.forward; _forward.y = 0f; _forward.Normalize();
+        Vector3 _right = camT.right; _right.y = 0f; _right.Normalize();
+
+        Vector3 _targetDirection = _forward * inputDir.y + _right * inputDir.x;
+        return _targetDirection;
+    }
+
+    void Move(Vector3 _torqueVector)
     {
         if (inputDir.magnitude >= 0.2f && isGrounded)
         {
             if (inputLocked && speed <= maxInputLockSpeed)
             {
                 rb.maxAngularVelocity = minAngularVelocityInputLock;
-                rb.AddTorque(torqueVector);
+                rb.AddTorque(_torqueVector);
             }
             else if (!inputLocked)
             {
-                rb.AddTorque(torqueVector);
+                rb.AddTorque(_torqueVector);
                 //rb.AddForce(moveVector);
             }
         }
@@ -74,7 +89,7 @@ public class PlayerMovement : MonoBehaviour, ILockableInput
 
     void OnPlayerMovementPerformed(Vector2 direction)
     {
-        inputDir = direction;
+        inputDir = direction.normalized;
     }
 
     void OnPlayerMovementCanceled()
