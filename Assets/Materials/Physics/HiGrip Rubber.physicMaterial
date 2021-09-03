@@ -9,6 +9,6 @@ PhysicMaterial:
   m_Name: HiGrip Rubber
   dynamicFriction: 10
   staticFriction: 10
-  bounciness: 0.8
+  bounciness: 1
   frictionCombine: 3
-  bounceCombine: 0
+  bounceCombine: 3

@@ -1,13 +1,22 @@
 using System.Collections;
 using UnityEngine;
 
-public class Pin : MonoBehaviour, ITaggable, IDamageable<int>
+public class Pin : MonoBehaviour//, ITaggable, IDamageable<int>
 {
     bool isTagged = false;
 
     [SerializeField] float destroyWaitTime = 1.0f;
     [SerializeField] ParticleSystem poofParticlePrefab;
     [SerializeField] Transform particleSpawnTransform;
+
+    void Update()
+    {
+        if (Vector3.Angle(transform.forward, Vector3.up) > 45)
+        {
+            Tag();
+            TakeDamage(1);
+        }
+    }
 
     public void TakeDamage(int damageTaken)
     {
@@ -23,7 +32,7 @@ public class Pin : MonoBehaviour, ITaggable, IDamageable<int>
         Destroy(gameObject);
     }
 
-    void ITaggable.Tag()
+    public void Tag()
     {
         if (!isTagged)
         {
