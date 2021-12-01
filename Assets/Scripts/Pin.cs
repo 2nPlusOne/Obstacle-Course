@@ -8,6 +8,7 @@ public class Pin : MonoBehaviour//, ITaggable, IDamageable<int>
     [SerializeField] float destroyWaitTime = 1.0f;
     [SerializeField] ParticleSystem poofParticlePrefab;
     [SerializeField] Transform particleSpawnTransform;
+    [SerializeField] AudioSource PoofAudioSourcePrefab;
 
     void Update()
     {
@@ -27,8 +28,10 @@ public class Pin : MonoBehaviour//, ITaggable, IDamageable<int>
     {
         yield return new WaitForSeconds(destroyWaitTime);
 
+        Instantiate(PoofAudioSourcePrefab, transform.position, transform.rotation);
         ParticleSystem particles = Instantiate(poofParticlePrefab, particleSpawnTransform.position, particleSpawnTransform.rotation);
         particles.transform.Rotate(90, 0, 0, Space.Self);
+
         Destroy(gameObject);
     }
 

@@ -159,6 +159,7 @@ MonoBehaviour:
   destroyWaitTime: 1
   poofParticlePrefab: {fileID: 7568438089473434412, guid: f76f7afa1e376734c8eb201e0f059432, type: 3}
   particleSpawnTransform: {fileID: 1085680855748289524}
+  PoofAudioSourcePrefab: {fileID: -4747293286284505806, guid: ff05b8291fd812a43b173d90a057e6ca, type: 3}
 --- !u!1 &3666738057955516916
 GameObject:
   m_ObjectHideFlags: 0
